@@ -1,0 +1,8 @@
+NonHorseOwner: "&4&l你并不是这个坐骑的主人，无法骑乘！"
+HorseOwnerIsNull: "&4&l马尚未被驯服，无法应用模型。"
+HorseAddModelSuccess: "&a&l模型应用成功！"
+HorseAddModelError: "&4&l模型应用失败，这匹马并非是你的。"
+HorseTypeError: "&4&l你需要在一个马上才能应用模型！"
+HorseModelRemove: "&a&l模型已移除！"
+CacheReload: "&a&l缓存已刷新！"
+ConfigReload: "&a&l配置文件已刷新！（注意：配置文件可以自行完成更新，无需使用本命令。仅在配置文件严重错误的情况下使用，但是基本上这个时候已经没救了。）"
