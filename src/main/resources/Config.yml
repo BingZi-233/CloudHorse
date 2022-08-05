@@ -21,7 +21,6 @@ database:
       database: test
       # 表名
       table: cloud_horse
-  join-select-delay: 20
   # 索引
   # NAME - 玩家名
   # UUID - 唯一标识

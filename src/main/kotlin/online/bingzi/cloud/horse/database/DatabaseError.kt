@@ -5,7 +5,7 @@ import online.bingzi.cloud.horse.entity.OwnerData
 import org.bukkit.entity.AbstractHorse
 import org.bukkit.entity.Player
 
-class DatabaseError(val cause: Throwable) : Database() {
+class DatabaseError(private val cause: Throwable) : Database() {
     override fun selectPlayer(player: Player): OwnerData {
         throw IllegalAccessError("Database initialization failed: ${cause.localizedMessage}")
     }

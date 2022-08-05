@@ -1,14 +1,16 @@
 package online.bingzi.cloud.horse.listener
 
+import ltd.icecold.orangeengine.api.OrangeEngineAPI
 import online.bingzi.cloud.horse.api.event.PlayerUpHorseEvent
+import online.bingzi.cloud.horse.util.OwnerDataCache
 import taboolib.common.platform.event.SubscribeEvent
-import taboolib.common.platform.function.info
 
 object PlayerUpHorseListener {
     @SubscribeEvent
-    fun onEvent(event:PlayerUpHorseEvent){
+    fun onEvent(event: PlayerUpHorseEvent) {
         val player = event.player
         val horse = event.horse
-        info("[上马]玩家 ${player.name} 已经骑上 ${horse.name}-初次驯服：${event.tame}-${horse.uniqueId}")
+        val ownerData = OwnerDataCache[player] ?: throw Exception("发生了内部错误！")
+        OrangeEngineAPI.getModelManager().addNewModelEntity(horse.uniqueId, ownerData.model)
     }
 }

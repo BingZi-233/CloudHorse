@@ -3,6 +3,7 @@ package online.bingzi.cloud.horse.database
 import online.bingzi.cloud.horse.entity.HorseData
 import online.bingzi.cloud.horse.entity.OwnerData
 import online.bingzi.cloud.horse.util.ConfigUtil
+import online.bingzi.cloud.horse.util.extracted
 import org.bukkit.entity.AbstractHorse
 import org.bukkit.entity.Player
 import taboolib.module.database.ColumnOptionSQL
@@ -86,15 +87,7 @@ class DatabaseSQL : Database() {
         return tableOwnerData.workspace(dataSource) {
             select {
                 rows("name", "uuid", "model", "last")
-                when (DatabaseUserIndex.INSTANCE) {
-                    DatabaseUserIndex.NAME -> {
-                        where { "name" eq player.name }
-                    }
-
-                    DatabaseUserIndex.UUID -> {
-                        where { "uuid" eq player.uniqueId.toString() }
-                    }
-                }
+                extracted(player)
                 limit(1)
             }
         }.firstOrNull {
@@ -103,22 +96,53 @@ class DatabaseSQL : Database() {
     }
 
     override fun updatePlayer(ownerData: OwnerData) {
-
+        if (tableOwnerData.find(dataSource) { extracted(ownerData) }) {
+            tableOwnerData.update(dataSource) {
+                extracted(ownerData)
+                set("model", ownerData.model)
+            }
+        } else {
+            tableOwnerData.insert(dataSource, "name", "uuid", "model") { value(ownerData.name, ownerData.uuid, ownerData.model) }
+        }
     }
 
+
     override fun deletePlayer(player: Player) {
-        TODO("Not yet implemented")
+        if (tableOwnerData.find(dataSource) { extracted(player) }) {
+            tableOwnerData.delete(dataSource) {
+                extracted(player)
+            }
+        }
     }
 
     override fun selectHorse(abstractHorse: AbstractHorse): HorseData? {
-        TODO("Not yet implemented")
+        return tableHorseData.select(dataSource) {
+            extracted(abstractHorse)
+        }.firstOrNull {
+            HorseData(getString("name"), getString("uuid"), getString("model"), getString("owner_name"), getString("owner_uuid"))
+        }
     }
 
     override fun updateHorse(horseData: HorseData) {
-        TODO("Not yet implemented")
+        if (tableHorseData.find(dataSource) { extracted(horseData) }) {
+            tableHorseData.update(dataSource) {
+                extracted(horseData)
+                set("model", horseData.model)
+            }
+        } else {
+            tableHorseData.insert(dataSource, "name", "uuid", "model", "owner_name", "owner_uuid") {
+                value(
+                    horseData.name, horseData.uuid, horseData.model, horseData.owner_name, horseData.owner_uuid
+                )
+            }
+        }
     }
 
     override fun deleteHorse(abstractHorse: AbstractHorse) {
-        TODO("Not yet implemented")
+        if (tableHorseData.find(dataSource) { extracted(abstractHorse) }) {
+            tableHorseData.delete(dataSource) {
+                extracted(abstractHorse)
+            }
+        }
     }
 }
