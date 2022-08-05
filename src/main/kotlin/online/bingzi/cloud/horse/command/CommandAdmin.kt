@@ -1,7 +1,7 @@
 package online.bingzi.cloud.horse.command
 
 import ltd.icecold.orangeengine.api.OrangeEngineAPI
-import online.bingzi.cloud.horse.util.modelCache
+import online.bingzi.cloud.horse.util.ModelCache
 import online.bingzi.cloud.horse.util.sendLangText
 import org.bukkit.Bukkit
 import org.bukkit.command.CommandSender
@@ -17,7 +17,7 @@ class CommandAdmin {
                     }
                     dynamic {
                         suggestion<CommandSender> { _, _ ->
-                            modelCache
+                            ModelCache
                         }
                         execute<CommandSender> { sender, context, argument ->
                             val playerName = context.argument(-1)
@@ -36,7 +36,7 @@ class CommandAdmin {
                     }
                     dynamic {
                         suggestion<CommandSender> { _, _ ->
-                            modelCache
+                            ModelCache
                         }
                         execute<CommandSender> { sender, context, argument ->
                             val playerName = context.argument(-1)
@@ -57,8 +57,8 @@ class CommandAdmin {
             literal("cache") {
                 literal("reload") {
                     execute<CommandSender> { sender, context, argument ->
-                        modelCache.clear()
-                        modelCache.addAll(OrangeEngineAPI.getModelManager().allModelData.keys)
+                        ModelCache.clear()
+                        ModelCache.addAll(OrangeEngineAPI.getModelManager().allModelData.keys)
                         sender.sendLangText("CacheReload")
                     }
                 }

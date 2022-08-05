@@ -13,6 +13,7 @@ taboolib {
     install("module-nms")
     install("module-nms-util")
     install("module-configuration")
+    install("module-database")
     install("platform-bukkit")
     classifier = null
     version = "6.0.9-45"
@@ -23,10 +24,6 @@ repositories {
 }
 
 dependencies {
-    compileOnly("org.ktorm:ktorm-core:3.5.0")
-    compileOnly("org.ktorm:ktorm-support-mysql:3.5.0")
-    compileOnly("org.ktorm:ktorm-support-sqlite:3.5.0")
-    compileOnly("com.alibaba:druid:1.2.11")
     compileOnly("ink.ptms:nms-all:1.0.0")
     compileOnly("ink.ptms.core:v11900:11900-minimize:mapped")
     compileOnly("ink.ptms.core:v11900:11900-minimize:universal")

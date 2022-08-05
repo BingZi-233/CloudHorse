@@ -1,7 +1,7 @@
 package online.bingzi.cloud.horse.command
 
 import ltd.icecold.orangeengine.api.OrangeEngineAPI
-import online.bingzi.cloud.horse.util.modelCache
+import online.bingzi.cloud.horse.util.ModelCache
 import online.bingzi.cloud.horse.util.sendLangText
 import org.bukkit.entity.AbstractHorse
 import org.bukkit.entity.Player
@@ -12,7 +12,7 @@ class CommandApply {
         val execute = subCommand {
             dynamic {
                 suggestion<Player> { _, _ ->
-                    modelCache
+                    ModelCache
                 }
                 execute<Player> { sender, _, argument ->
                     val vehicle = sender.vehicle

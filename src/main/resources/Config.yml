@@ -1,3 +1,31 @@
+# 数据源
+database:
+  # 数据源类型
+  # LOCAL - SQLite
+  # MYSQL - MySQL
+  # MONGODB - MongoDB - 不可用
+  use: LOCAL
+  # 链接源
+  source:
+    # MySQL链接源
+    SQL:
+      # 地址
+      host: localhost
+      # 端口
+      port: 3306
+      # 用户名
+      user: root
+      # 密码
+      password: root
+      # 数据库
+      database: test
+      # 表名
+      table: cloud_horse
+  join-select-delay: 20
+  # 索引
+  # NAME - 玩家名
+  # UUID - 唯一标识
+  user-index: UUID
 # 马的相关功能
 Horse:
   # 马主人识别限制

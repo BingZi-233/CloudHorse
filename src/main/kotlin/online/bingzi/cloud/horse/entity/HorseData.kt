@@ -4,15 +4,17 @@ package online.bingzi.cloud.horse.entity
  * Horse data
  * 马的数据
  *
- * @property name 马的名称
- * @property uuid 马的UUID
+ * @property name 名称
+ * @property uuid UUID
  * @property model 模型
- * @property owner 驯服的人
+ * @property owner_name 驯服的玩家名
+ * @property owner_uuid 驯服的玩家UUID
  * @constructor Create empty Horse data
  */
 data class HorseData(
     val name: String,
     val uuid: String,
-    val model: String,
-    val owner: OwnerDate,
+    var model: String = "NULL",
+    val owner_name: String,
+    val owner_uuid: String,
 )
