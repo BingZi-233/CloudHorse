@@ -10,8 +10,10 @@ import org.bukkit.entity.Player
  * Model cache
  * 模型名称缓存
  */
-val ModelCache: MutableList<String> = mutableListOf<String>().apply {
-    this.addAll(OrangeEngineAPI.getModelManager().allModelData.keys)
+val ModelCache: MutableList<String> by lazy {
+    mutableListOf<String>().apply {
+        this.addAll(OrangeEngineAPI.getModelManager().allModelData.keys)
+    }
 }
 
 /**

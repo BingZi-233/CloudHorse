@@ -21,7 +21,7 @@ object EntityMountListener {
         val player = event.entity
         if (horse is AbstractHorse && player is Player) {
             horse.owner?.let {
-                if (it.uniqueId == player.uniqueId || player.isOp || ConfigUtil.confConfig.getBoolean("Horse.Owner")) {
+                if (it.uniqueId == player.uniqueId || player.isOp || ConfigUtil.conf.getBoolean("Horse.Owner")) {
                     PlayerUpHorseEvent(player, horse).call()
                 } else {
                     player.sendLangText("NonHorseOwner")

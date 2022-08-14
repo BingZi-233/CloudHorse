@@ -14,25 +14,25 @@ import javax.sql.DataSource
 
 @Suppress("DuplicatedCode")
 class DatabaseSQL : Database() {
-    private val host = ConfigUtil.confConfig.getHost("database.source.SQL")
+    private val host = ConfigUtil.conf.getHost("database.source.SQL")
 
     private val name: String
-        get() = ConfigUtil.confConfig.getString("database.source.SQL.table", "cloud_horse")!!
+        get() = ConfigUtil.conf.getString("database.source.SQL.table", "cloud_horse")!!
 
     private val dataSource: DataSource by lazy {
         host.createDataSource()
     }
 
-    private val tableOwnerData = Table("${name}_Owner", host) {
+    private val tableOwnerData = Table("${name}_owner", host) {
         add { id() }
         add("name") {
             type(ColumnTypeSQL.VARCHAR, 64) {
-                options(ColumnOptionSQL.UNIQUE_KEY)
+                options(ColumnOptionSQL.KEY)
             }
         }
         add("uuid") {
             type(ColumnTypeSQL.VARCHAR, 64) {
-                options(ColumnOptionSQL.UNIQUE_KEY)
+                options(ColumnOptionSQL.KEY)
             }
         }
         add("model") {
@@ -40,16 +40,16 @@ class DatabaseSQL : Database() {
         }
     }
 
-    private val tableHorseData = Table("${name}_Horse", host) {
+    private val tableHorseData = Table("${name}_horse", host) {
         add { id() }
         add("name") {
             type(ColumnTypeSQL.VARCHAR, 64) {
-                options(ColumnOptionSQL.UNIQUE_KEY)
+                options(ColumnOptionSQL.KEY)
             }
         }
         add("uuid") {
             type(ColumnTypeSQL.VARCHAR, 64) {
-                options(ColumnOptionSQL.UNIQUE_KEY)
+                options(ColumnOptionSQL.KEY)
             }
         }
         add("model") {
@@ -86,7 +86,7 @@ class DatabaseSQL : Database() {
     override fun selectPlayer(player: Player): OwnerData? {
         return tableOwnerData.workspace(dataSource) {
             select {
-                rows("name", "uuid", "model", "last")
+                rows("name", "uuid", "model")
                 extracted(player)
                 limit(1)
             }

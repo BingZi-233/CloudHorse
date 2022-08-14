@@ -7,7 +7,7 @@ enum class DatabaseType {
     companion object{
         val INSTANCE : DatabaseType by lazy {
             try {
-                valueOf(ConfigUtil.confConfig.getString("database.use")!!.uppercase())
+                valueOf(ConfigUtil.conf.getString("database.use")!!.uppercase())
             }catch (ignored:Throwable){
                 LOCAL
             }

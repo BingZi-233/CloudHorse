@@ -3,6 +3,7 @@ package online.bingzi.cloud.horse.database
 import online.bingzi.cloud.horse.entity.HorseData
 import online.bingzi.cloud.horse.entity.OwnerData
 import online.bingzi.cloud.horse.util.ConfigUtil
+import online.bingzi.cloud.horse.util.extracted
 import org.bukkit.entity.AbstractHorse
 import org.bukkit.entity.Player
 import taboolib.common.platform.function.getDataFolder
@@ -16,7 +17,7 @@ import javax.sql.DataSource
 class DatabaseSQLite : Database() {
     val host = File(getDataFolder(), "data.db").getHost()
     val name: String
-        get() = ConfigUtil.confConfig.getString("database.source.SQL.table", "cloud_horse")!!
+        get() = ConfigUtil.conf.getString("database.source.SQL.table", "cloud_horse")!!
 
     private val dataSource: DataSource by lazy {
         host.createDataSource()
@@ -77,11 +78,17 @@ class DatabaseSQLite : Database() {
     }
 
     override fun selectPlayer(player: Player): OwnerData? {
-        TODO("Not yet implemented")
+        return tableOwnerData.select(dataSource) {
+            extracted(player)
+        }.firstOrNull {
+            OwnerData(getString("name"), getString("uuid"), getString("model"))
+        }
     }
 
     override fun updatePlayer(ownerData: OwnerData) {
-        TODO("Not yet implemented")
+        tableOwnerData.update(dataSource,) {
+            extracted(ownerData)
+        }
     }
 
     override fun deletePlayer(player: Player) {

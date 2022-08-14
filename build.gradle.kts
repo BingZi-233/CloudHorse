@@ -6,6 +6,20 @@ plugins {
 }
 
 taboolib {
+    description {
+        contributors {
+            // 作者名称
+            name("Bkm016")
+            name("BingZi233")
+        }
+        dependencies {
+            name("OrangeEngine")
+        }
+        links {
+            // 在非 Sponge8 平台下只保留 homepage 链接
+            name("homepage").url("https://www.bingzi.online")
+        }
+    }
     install("common")
     install("common-5")
     install("module-chat")

@@ -11,6 +11,8 @@ object PlayerUpHorseListener {
         val player = event.player
         val horse = event.horse
         val ownerData = OwnerDataCache[player] ?: throw Exception("发生了内部错误！")
-        OrangeEngineAPI.getModelManager().addNewModelEntity(horse.uniqueId, ownerData.model)
+        if (ownerData.model != "NULL") {
+            OrangeEngineAPI.getModelManager().addNewModelEntity(horse.uniqueId, ownerData.model)
+        }
     }
 }

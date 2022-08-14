@@ -71,9 +71,9 @@ abstract class Database {
         val INSTANCE: Database by lazy {
             try {
                 when (DatabaseType.INSTANCE) {
-                    DatabaseType.LOCAL -> DatabaseSQLite()
+                    DatabaseType.LOCAL -> DatabaseError(IllegalAccessError("Local Database is not supported"))
                     DatabaseType.SQL -> DatabaseSQL()
-                    DatabaseType.MONGODB -> DatabaseError(IllegalAccessError("未实现的数据库类型"))
+                    DatabaseType.MONGODB -> DatabaseError(IllegalAccessError("MongoDB Database is not supported"))
                 }
             } catch (e: Throwable) {
                 DatabaseError(e)
@@ -99,7 +99,7 @@ abstract class Database {
         @SubscribeEvent
         fun onPlayerJoin(event: PlayerJoinEvent) {
             val player = event.player
-            OwnerDataCache[player] = INSTANCE.selectPlayer(player) ?: OwnerData(player.name, player.uniqueId.toString(), "NULL")
+            OwnerDataCache[player] = INSTANCE.selectPlayer(player) ?: OwnerData(player.name, player.uniqueId.toString())
         }
 
         /**

@@ -2,9 +2,9 @@
 database:
   # 数据源类型
   # LOCAL - SQLite
-  # MYSQL - MySQL
+  # SQL - MySQL
   # MONGODB - MongoDB - 不可用
-  use: LOCAL
+  use: SQL
   # 链接源
   source:
     # MySQL链接源
@@ -18,7 +18,7 @@ database:
       # 密码
       password: root
       # 数据库
-      database: test
+      database: minecraft
       # 表名
       table: cloud_horse
   # 索引

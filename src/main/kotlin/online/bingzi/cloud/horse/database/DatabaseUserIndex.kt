@@ -8,7 +8,7 @@ enum class DatabaseUserIndex {
     companion object {
         val INSTANCE: DatabaseUserIndex by lazy {
             try {
-                valueOf(ConfigUtil.confConfig.getString("database.user-index")!!.uppercase())
+                valueOf(ConfigUtil.conf.getString("database.user-index")!!.uppercase())
             } catch (ignored: Throwable) {
                 UUID
             }

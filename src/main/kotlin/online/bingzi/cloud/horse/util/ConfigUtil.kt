@@ -5,6 +5,6 @@ import taboolib.module.configuration.Configuration
 
 object ConfigUtil {
     @Config(value = "Config.yml", migrate = true, autoReload = true)
-    lateinit var confConfig: Configuration
+    lateinit var conf: Configuration
         private set
 }
