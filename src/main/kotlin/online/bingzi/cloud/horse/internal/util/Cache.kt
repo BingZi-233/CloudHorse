@@ -15,13 +15,13 @@ object Cache {
      * Cache model
      * 模型缓存
      */
-    private val cacheModel: MutableList<String> = mutableListOf()
+    val cacheModel: MutableList<String> = mutableListOf()
 
     /**
      * Cache owner data
      * 所有者数据缓存
      */
-    private val cacheOwnerData: MutableMap<Player, OwnerData> = mutableMapOf()
+    val cacheOwnerData: MutableMap<Player, OwnerData> = mutableMapOf()
 
     /**
      * Cache owner limit

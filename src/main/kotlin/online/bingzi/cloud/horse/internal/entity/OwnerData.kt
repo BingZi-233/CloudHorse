@@ -12,5 +12,5 @@ package online.bingzi.cloud.horse.internal.entity
 data class OwnerData(
     val name: String,
     val uuid: String,
-    val model: String,
+    var model: String? = null,
 )
