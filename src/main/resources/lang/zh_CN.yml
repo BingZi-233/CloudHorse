@@ -1,4 +1,6 @@
 CacheNotFound: "&4&l未在缓存中找到您的数据，请稍后再试。"
-CacheNotFoundToPlayer: "&4&l未在缓存中找到 {0} 的数据，请稍后再试。"
 CommandApplySuccess: "&a&l模型已应用到您的角色。"
+CommandResetSuccess: "&a&l模型已重置。"
+CacheNotFoundToPlayer: "&4&l未在缓存中找到 {0} 的数据，请稍后再试。"
 CommandApplySuccessToPlayer: "&a&l模型已应用到 {0} 的角色。"
+CommandResetSuccessToPlayer: "&a&l模型已重置到 {0} 的角色。"

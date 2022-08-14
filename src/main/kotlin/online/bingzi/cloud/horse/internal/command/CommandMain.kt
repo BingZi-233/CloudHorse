@@ -14,4 +14,7 @@ import taboolib.common.platform.command.PermissionDefault
 object CommandMain {
     @CommandBody(aliases = ["set"], permission = "CloudHorse.Command.Apply", permissionDefault = PermissionDefault.OP)
     val apply = CommandApply.execute
+
+    @CommandBody(permission = "CloudHorse.Command.Reset", permissionDefault = PermissionDefault.OP)
+    val reset = CommandReset.execute
 }
