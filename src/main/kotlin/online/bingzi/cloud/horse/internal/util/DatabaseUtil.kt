@@ -22,13 +22,6 @@ fun ActionSelect.userIndex(ownerData: OwnerData) {
     }
 }
 
-fun ActionUpdate.userIndex(player: Player) {
-    when (DatabaseUserIndex.INSTANCE) {
-        DatabaseUserIndex.NAME -> where { "name" eq player.name }
-        DatabaseUserIndex.UUID -> where { "uuid" eq player.uniqueId.toString() }
-    }
-}
-
 fun ActionUpdate.userIndex(ownerData: OwnerData) {
     when (DatabaseUserIndex.INSTANCE) {
         DatabaseUserIndex.NAME -> where { "name" eq ownerData.name }
@@ -40,12 +33,5 @@ fun ActionDelete.userIndex(player: Player) {
     when (DatabaseUserIndex.INSTANCE) {
         DatabaseUserIndex.NAME -> where { "name" eq player.name }
         DatabaseUserIndex.UUID -> where { "uuid" eq player.uniqueId.toString() }
-    }
-}
-
-fun ActionDelete.userIndex(ownerData: OwnerData) {
-    when (DatabaseUserIndex.INSTANCE) {
-        DatabaseUserIndex.NAME -> where { "name" eq ownerData.name }
-        DatabaseUserIndex.UUID -> where { "uuid" eq ownerData.uuid }
     }
 }
