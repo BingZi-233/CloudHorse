@@ -1,19 +1,10 @@
-# Building
+# CloudHorse
 
-* [Gradle](https://gradle.org/) - Dependency Management
+基于OrangeEngine的支持马模型的Minecraft插件
 
-The GradleWrapper in included in this project.
+你可以基于这个插件制作一些附属
 
-**Windows:**
-
-```
-gradlew.bat clean build
-```
-
-**macOS/Linux:**
-
-```
-./gradlew clean build
-```
-
-Build artifacts should be found in `./build/libs` folder.
+相关链接：
+1. OrangeEngine - [链接](https://engine.icecold.ltd/)
+2. Orange - QQ:736131306 - OrangeEngine插件开发者
+3. BingZi - QQ:1354218038 - CloudHorse插件开发者
