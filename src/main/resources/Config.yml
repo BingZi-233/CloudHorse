@@ -26,6 +26,6 @@ database:
   # UUID - 唯一标识
   user-index: UUID
 # 马的相关功能
-Horse:
+CloudHorse:
   # 马主人识别限制
-  Owner: true
+  OwnerLimit: true
