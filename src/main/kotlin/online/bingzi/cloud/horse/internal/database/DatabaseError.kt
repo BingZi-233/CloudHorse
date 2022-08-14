@@ -14,7 +14,7 @@ class DatabaseError(private val cause: Throwable) : Database() {
         throw IllegalAccessError("You can't insert data to database error. cause: ${cause.message}")
     }
 
-    override fun getOwnerData(player: Player): OwnerData {
+    override fun selectOwnerData(player: Player): OwnerData {
         throw IllegalAccessError("You can't get data from database error. cause: ${cause.message}")
     }
 

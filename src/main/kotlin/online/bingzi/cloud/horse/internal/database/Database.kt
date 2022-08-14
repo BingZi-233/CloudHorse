@@ -10,17 +10,51 @@ import taboolib.common.platform.Awake
 import taboolib.common.platform.Schedule
 import taboolib.common.platform.event.SubscribeEvent
 
+/**
+ * Database
+ * 数据库
+ *
+ * @constructor Create empty Database
+ */
 abstract class Database {
+    /**
+     * Insert owner data
+     * 插入OwnerData
+     *
+     * @param ownerData owner data
+     */
     abstract fun insertOwnerData(ownerData: OwnerData)
-    abstract fun getOwnerData(player: Player): OwnerData?
+
+    /**
+     * Select owner data
+     * 获取OwnerData
+     *
+     * @param player player
+     * @return owner data
+     */
+    abstract fun selectOwnerData(player: Player): OwnerData?
+
+    /**
+     * Update owner data
+     * 更新OwnerData
+     *
+     * @param ownerData owner data
+     */
     abstract fun updateOwnerData(ownerData: OwnerData)
+
+    /**
+     * Delete owner data
+     * 删除OwnerData
+     *
+     * @param player player
+     */
     abstract fun deleteOwnerData(player: Player)
 
     companion object {
         private val INSTANCE: Database by lazy {
             try {
                 when (DatabaseType.INSTANCE) {
-                    DatabaseType.LOCAL -> throw Throwable("Local database is not supported")
+                    DatabaseType.LOCAL -> DatabaseSQLite()
                     DatabaseType.SQL -> throw Throwable("SQL database is not supported")
                     DatabaseType.MONGODB -> throw Throwable("MongoDB database is not supported")
                 }
@@ -43,7 +77,7 @@ abstract class Database {
         @SubscribeEvent
         fun onPlayerJoin(event: PlayerJoinEvent) {
             val player = event.player
-            Cache.cacheOwnerData[player] = INSTANCE.getOwnerData(player) ?: OwnerData(player.name, player.uniqueId.toString())
+            Cache.cacheOwnerData[player] = INSTANCE.selectOwnerData(player) ?: OwnerData(player.name, player.uniqueId.toString())
         }
 
         /**
