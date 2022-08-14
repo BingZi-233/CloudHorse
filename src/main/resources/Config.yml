@@ -25,7 +25,3 @@ database:
   # NAME - 玩家名
   # UUID - 唯一标识
   user-index: UUID
-# 马的相关功能
-CloudHorse:
-  # 马主人识别限制
-  OwnerLimit: true
