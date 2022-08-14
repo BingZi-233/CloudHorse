@@ -16,7 +16,6 @@ taboolib {
             name("OrangeEngine")
         }
         links {
-            // 在非 Sponge8 平台下只保留 homepage 链接
             name("homepage").url("https://www.bingzi.online")
         }
     }
