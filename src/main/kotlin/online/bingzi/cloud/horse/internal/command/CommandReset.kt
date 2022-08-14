@@ -14,7 +14,7 @@ class CommandReset {
                 suggestion<CommandSender> { _, _ ->
                     Bukkit.getOnlinePlayers().map { it.name }
                 }
-                execute<CommandSender> { sender, context, argument ->
+                execute<CommandSender> { sender, _, argument ->
                     Bukkit.getPlayer(argument)?.let { player ->
                         cacheOwnerData[player]?.let {
                             it.model = "null"
@@ -24,7 +24,7 @@ class CommandReset {
                     }
                 }
             }
-            execute<Player> { sender, context, argument ->
+            execute<Player> { sender, _, _ ->
                 cacheOwnerData[sender]?.let {
                     it.model = "null"
                     cacheOwnerData[sender] = it
