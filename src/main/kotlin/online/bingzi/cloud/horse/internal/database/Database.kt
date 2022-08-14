@@ -17,7 +17,7 @@ abstract class Database {
     abstract fun deleteOwnerData(player: Player)
 
     companion object {
-        val INSTANCE: Database by lazy {
+        private val INSTANCE: Database by lazy {
             try {
                 when (DatabaseType.INSTANCE) {
                     DatabaseType.LOCAL -> throw Throwable("Local database is not supported")
