@@ -4,24 +4,23 @@ import online.bingzi.cloud.horse.internal.entity.OwnerData
 import online.bingzi.cloud.horse.internal.util.ConfigUtil
 import online.bingzi.cloud.horse.internal.util.userIndex
 import org.bukkit.entity.Player
-import taboolib.common.platform.function.getDataFolder
-import taboolib.module.database.ColumnTypeSQLite
+import taboolib.module.database.ColumnOptionSQL
+import taboolib.module.database.ColumnTypeSQL
 import taboolib.module.database.Table
 import taboolib.module.database.getHost
-import java.io.File
 import javax.sql.DataSource
 
 /**
- * Database SQLite
- * 数据库SQLite
+ * Database SQL
+ * 数据库SQL
  *
- * @constructor Create empty Database SQLite
+ * @constructor Create empty Database SQL
  */
-class DatabaseSQLite : Database() {
+class DatabaseSQL : Database() {
     /**
      * Host
      */
-    private val host = File(getDataFolder(), "database.db").getHost()
+    private val host = ConfigUtil.conf.getHost("database.source.SQL")
 
     /**
      * Name
@@ -40,14 +39,19 @@ class DatabaseSQLite : Database() {
      * Table owner data
      */
     private val tableOwnerData = Table("${name}_db", host) {
+        add { id() }
         add("name") {
-            type(ColumnTypeSQLite.TEXT, 64)
+            type(ColumnTypeSQL.VARCHAR, 64) {
+                options(ColumnOptionSQL.KEY)
+            }
         }
         add("uuid") {
-            type(ColumnTypeSQLite.TEXT, 64)
+            type(ColumnTypeSQL.VARCHAR, 64) {
+                options(ColumnOptionSQL.PRIMARY_KEY)
+            }
         }
         add("model") {
-            type(ColumnTypeSQLite.TEXT, 64)
+            type(ColumnTypeSQL.TEXT)
         }
     }
 
@@ -79,13 +83,13 @@ class DatabaseSQLite : Database() {
                 userIndex(ownerData)
                 set("model", ownerData.model)
             }
-        }else{
+        } else {
             insertOwnerData(ownerData)
         }
     }
 
     override fun deleteOwnerData(player: Player) {
-        if (tableOwnerData.find(dataSource){userIndex(player)}) {
+        if (tableOwnerData.find(dataSource) { userIndex(player) }) {
             tableOwnerData.delete(dataSource) {
                 userIndex(player)
             }

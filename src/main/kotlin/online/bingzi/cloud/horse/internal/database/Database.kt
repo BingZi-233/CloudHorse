@@ -55,7 +55,7 @@ abstract class Database {
             try {
                 when (DatabaseType.INSTANCE) {
                     DatabaseType.LOCAL -> DatabaseSQLite()
-                    DatabaseType.SQL -> throw Throwable("SQL database is not supported")
+                    DatabaseType.SQL -> DatabaseSQL()
                     DatabaseType.MONGODB -> throw Throwable("MongoDB database is not supported")
                 }
             } catch (e: Throwable) {
