@@ -1,8 +1,10 @@
 package online.bingzi.cloud.horse.internal.util
 
+import ltd.icecold.orangeengine.api.OrangeEngineAPI
 import online.bingzi.cloud.horse.internal.entity.OwnerData
 import online.bingzi.cloud.horse.internal.util.ConfigUtil.conf
 import org.bukkit.entity.Player
+import taboolib.common.platform.Schedule
 
 /**
  * Cache
@@ -40,5 +42,16 @@ object Cache {
             cacheOwnerLimit = conf.getBoolean("CloudHorse.OwnerLimit")
         }
         return cacheOwnerLimit!!
+    }
+
+    /**
+     * On load cache model
+     * 更新模型缓存
+     *
+     */
+    @Schedule(period = 100, async = true)
+    fun onLoadCacheModel() {
+        cacheModel.clear()
+        cacheModel.addAll(OrangeEngineAPI.getModelManager().allModelData.keys)
     }
 }
