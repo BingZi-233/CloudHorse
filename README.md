@@ -1,3 +1,4 @@
+![Logo](image/CloudHorse.png)
 # CloudHorse
 
 基于OrangeEngine的支持马模型的Minecraft插件
