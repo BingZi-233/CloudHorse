@@ -4,6 +4,7 @@ import ltd.icecold.orangeengine.api.OrangeEngineAPI
 import online.bingzi.cloud.horse.internal.entity.OwnerData
 import org.bukkit.entity.Player
 import taboolib.common.platform.Schedule
+import taboolib.common.platform.function.warning
 
 /**
  * Cache
@@ -16,7 +17,9 @@ object Cache {
      * Cache model
      * 模型缓存
      */
-    val cacheModel: MutableList<String> = mutableListOf()
+    val cacheModel: MutableList<String> by lazy {
+        OrangeEngineAPI.getModelManager().allModelData.keys.toMutableList()
+    }
 
     /**
      * Cache owner data
@@ -31,7 +34,11 @@ object Cache {
      */
     @Schedule(period = 100, async = true)
     fun onLoadCacheModel() {
-        cacheModel.clear()
-        cacheModel.addAll(OrangeEngineAPI.getModelManager().allModelData.keys)
+        try {
+            cacheModel.clear()
+            cacheModel.addAll(OrangeEngineAPI.getModelManager().allModelData.keys)
+        } catch (ignored: Throwable) {
+            warning("更新模型缓存失败, 原因: ${ignored.message}")
+        }
     }
 }
