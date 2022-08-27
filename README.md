@@ -1,3 +1,1 @@
-# 首页
-
-<figure><img src=".gitbook/assets/CloudHorse.png" alt=""><figcaption></figcaption></figure>
+![Logo](.gitbook/assets/CloudHorse.png)

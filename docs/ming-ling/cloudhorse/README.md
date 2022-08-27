@@ -10,8 +10,8 @@ description: 主命令
 
 ## 子命令
 
-* [apply](apply.md)
-* [reset](reset.md)
+* [apply](IdeaProjects/MinecraftPlugin/Cloud/CloudHorse/docs/ming-ling/cloudhorse/apply.md)
+* [reset](IdeaProjects/MinecraftPlugin/Cloud/CloudHorse/docs/ming-ling/cloudhorse/reset.md)
 
 ## 权限
 
